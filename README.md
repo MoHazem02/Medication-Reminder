@@ -48,7 +48,7 @@ shell
 Copy
 python main.py
 ```
-Usage
+## Usage
 Load the prescription information provided by the doctor into the application.
 
 Arrange the medications in the medication box according to the prescribed schedule.
@@ -59,13 +59,11 @@ The application will provide reminders if a medication dose is missed.
 
 The medication usage data will be recorded in a CSV file for future reference.
 
-Contributing
+## Contributing
 Contributions to the Medication Reminder project are welcome! If you find any bugs, have suggestions for improvements, or would like to add new features, please feel free to submit a pull request.
 
-License
-This project is licensed under the MIT License.
 
-Acknowledgments
+## Acknowledgments
 PyQt5
 pymata4
 FirmataExpress
