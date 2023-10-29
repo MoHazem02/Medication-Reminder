@@ -33,19 +33,17 @@ Medication Reminder is a prototype project that utilizes an ultrasonic sensor an
    
 Install the required Python libraries:
 
-shell
-Copy
+```shell
 pip install pyqt5 pymata4 csv
 ```
 
-Open the FirmataExpress sketch in the Arduino IDE and upload it to the Arduino Uno board.
+- Open the FirmataExpress sketch in the Arduino IDE and upload it to the Arduino Uno board.
 
-Connect the ultrasonic sensor to the Arduino Uno according to the wiring instructions provided in the project documentation.
+- Connect the ultrasonic sensor to the Arduino Uno according to the wiring instructions provided in the project documentation.
 
-Launch the Medication Reminder application:
+- Launch the Medication Reminder application:
 
-shell
-Copy
+```shell
 python main.py
 ```
 ## Usage
