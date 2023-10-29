@@ -1,7 +1,7 @@
 from pymata4 import pymata4
-from datetime import datetime
 import Medicine
 from PyQt5.QtWidgets import QFileDialog
+from PyQt5.QtGui import QColor
 from PyQt5 import QtCore, QtGui, QtWidgets
 import csv
 
@@ -14,22 +14,27 @@ class ApplicationManager:
         self.TIMES = [0] * 25
         self.medicines = []
         self.medicine_count = 0
-        # self.board = pymata4.Pymata4()
-        # self.board.set_pin_mode_sonar(self.trig_pin, self.echo_pin, self.process)
+        self.Opened = False
+        self.board = pymata4.Pymata4()
+        self.board.set_pin_mode_sonar(self.trig_pin, self.echo_pin, self.process)
+        self.taken_pills = 0
 
     def process(self, data):
         if data[2] > 100:
-            return 
+            return
+        if data[2] > 30 and not self.Opened:
+            self.Opened = True
+            self.took_medicine()
+        else:
+            if data[2] < 15:
+                self.Opened = False
         print(f"Distance: {data[2]} cm")
-        # lw mfe4 7aga 5als mn 150 le 250 lw fe mn 5 cm le 50 cm
 
     def Load_Transcription(self):
         file_path, _ = QFileDialog.getOpenFileName(None, "Browse Signal", "", "All Files (*)")
         if file_path:
             with open(file_path, "r") as transcription:
                 self.CreatListItems(transcription)
-                self.SetProgressBarLimits()
-                # self.Check_Timings_and_Progress()
 
 
 
@@ -58,7 +63,7 @@ class ApplicationManager:
         brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
         brush.setStyle(QtCore.Qt.NoBrush)
         item.setForeground(brush)
-        item.setText(f"{medicine} || {dose} || {ind}")
+        item.setText(f"{medicine} || {dose} || {ind}:00")
         self.ui_window.listWidget.addItem(item)
 
     def sort_medicines(self):
@@ -70,17 +75,14 @@ class ApplicationManager:
                 index += times
             self.medicine_count += 1
 
-
-    def Check_Timings_and_Progress(self):
-        # all_strikeout = False
-        # while not all_strikeout:
-        #     all_strikeout = True
-            index = 0
-            for times in self.timings_list:
-                if times == self.current_time:
-                    self.ui_window.listWidget.item(index).setStrikeOut(True)
-                    index += 1
-
-            # if self.ui_window.listWidget.item(index)[2] == timings_list[index]:
-            #     self.ui_window.listWidget.item(index).setStrikeOut(True)
-            #     self.ui_window.progressBar
+    def took_medicine(self):
+        font = QtGui.QFont()
+        font.setPointSize(16)
+        font.setBold(True)
+        font.setUnderline(False)
+        font.setWeight(75)
+        font.setStrikeOut(True)
+        self.ui_window.listWidget.item(self.taken_pills).setFont(font)
+        self.ui_window.listWidget.item(self.taken_pills).setForeground(QColor("red"))
+        self.taken_pills += 1
+        self.ui_window.progressBar.setValue(self.taken_pills)
