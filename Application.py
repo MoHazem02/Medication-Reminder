@@ -119,7 +119,7 @@ class Ui_MainWindow(object):
 "<p align=\"center\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
 "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:28pt; font-weight:600;\">  No Alerts</span></p></body></html>"))
         self.menuFile.setTitle(_translate("MainWindow", "File"))
-        self.actionLoad_Transcription.setText(_translate("MainWindow", "Load Transcription"))
+        self.actionLoad_Transcription.setText(_translate("MainWindow", "Load Prescription"))
 
 
 if __name__ == "__main__":
