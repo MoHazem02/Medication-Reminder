@@ -44,7 +44,7 @@ pip install pyqt5 pymata4 csv
 - Launch the Medication Reminder application:
 
 ```shell
-python main.py
+python Application.py
 ```
 ## Usage
 Load the prescription information provided by the doctor into the application.
